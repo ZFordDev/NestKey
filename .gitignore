@@ -1,0 +1,13 @@
+# Node modules and build artefacts
+node_modules/
+dist/
+*.log
+
+# Sensitive runtime data – never commit these!
+pin.json
+vault.enc
+vault.json   # (if you ever store the encrypted file under a different name)
+
+# OS‑specific junk
+.DS_Store
+Thumbs.db

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NestKey</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+    <!-- ==== LOCK SCREEN (as a dialog) ==== -->
+    <dialog id="lock-screen" aria-labelledby="lock-title">
+        <h1 id="lock-title" aria-hidden="true">🔐 NestKey</h1>
+        <p id="lock-message">Enter your PIN to unlock</p>
+
+        <form id="pin-form">
+            <input type="password" id="pin-input" placeholder="Enter PIN" autocomplete="off" required minlength="4"
+                maxlength="12">
+            <button type="submit">Unlock</button>
+        </form>
+
+        <div id="pin-setup" class="hidden">
+            <h2>Set a new PIN</h2>
+            <form id="pin-setup-form">
+                <input type="password" id="pin-new" placeholder="New PIN" required minlength="4" maxlength="12">
+                <input type="password" id="pin-confirm" placeholder="Confirm PIN" required minlength="4" maxlength="12">
+                <button type="submit">Create PIN</button>
+            </form>
+        </div>
+    </dialog>
+
+    <!-- ==== MAIN APP ==== -->
+    <section id="main-app" class="screen hidden">
+        <header>
+            <h1>🔐 NestKey</h1>
+            <nav>
+                <button id="theme-toggle">Toggle Theme</button>
+                <button id="vault-wipe">Wipe Vault</button>
+            </nav>
+        </header>
+
+        <main>
+            <button id="add-credential">Add Credential</button>
+
+            <table id="credential-table">
+                <thead>
+                    <tr>
+                        <th>Site</th>
+                        <th>Username</th>
+                        <th>Password</th>
+                        <th>Notes</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Filled by renderer.js -->
+                </tbody>
+            </table>
+        </main>
+    </section>
+
+    <!-- ==== MODAL: Add / Edit Credential ==== -->
+    <dialog id="credential-dialog" aria-labelledby="dialog-title" aria-describedby="credential-form">
+        <form method="dialog" id="credential-form">
+            <h2 id="dialog-title">Add Credential</h2>
+            <label>
+                Site / Service
+                <input type="text" id="field-site" required autofocus>
+            </label>
+            <label>
+                Username / Email
+                <input type="text" id="field-username" required>
+            </label>
+            <label>
+                Password
+                <input type="text" id="field-password" required>
+                <button type="button" id="generate-pass-btn">Generate</button>
+                <button type="button" id="toggle-pass-visibility">Show</button>
+            </label>
+            <label>
+                Notes (optional)
+                <textarea id="field-notes"></textarea>
+            </label>
+            <menu>
+                <button type="submit">Save</button>
+                <button type="button" id="dialog-cancel">Cancel</button>
+            </menu>
+        </form>
+    </dialog>
+
+    <!-- ==== MODAL: Generate Password ==== -->
+    <dialog id="generator-dialog">
+        <form method="dialog" id="generator-form">
+            <h2>Generate Password</h2>
+            <label>
+                Length
+                <input type="number" id="gen-length" min="4" max="64" value="16">
+            </label>
+            <fieldset>
+                <legend>Include characters</legend>
+                <label><input type="checkbox" id="gen-lowercase" checked> Lowercase (a‑z)</label>
+                <label><input type="checkbox" id="gen-uppercase" checked> Uppercase (A‑Z)</label>
+                <label><input type="checkbox" id="gen-numbers" checked> Numbers (0‑9)</label>
+                <label><input type="checkbox" id="gen-symbols"> Symbols (!@#$…)</label>
+            </fieldset>
+            <menu>
+                <button type="submit">Generate</button>
+                <button type="button" id="gen-cancel">Cancel</button>
+            </menu>
+        </form>
+    </dialog>
+
+    <script src="renderer.js" defer></script>
+    <noscript>
+        <p>This application requires JavaScript to function. Please enable JavaScript in your browser.</p>
+    </noscript>
+
+    <footer>
+        <p>&copy; 2025 NestKey. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>
