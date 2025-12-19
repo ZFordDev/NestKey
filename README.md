@@ -1,180 +1,171 @@
-# NestKey  
+
+# **NestKey**  
 
 <p align="center">
-  <img src="assets/icon.png" alt="NestKey Icon" width="150" style="border-radius:12px;" /><br/>
+  <img src="assets/icon.png" width="140" style="border-radius:12px;" />
 </p>
 
 <p align="center">
-   NestKey — Offline password manager built with Electron. <br/>
-   A minimalist vault for usernames, passwords, and notes — stored <strong>locally</strong> and <strong>encrypted</strong> with a user‑chosen PIN.
+  <strong>A minimalist, local‑only vault for passwords, usernames, and notes — secured with a user‑chosen PIN.</strong><br/>
+  No cloud. No sync. No telemetry. Your data stays on your machine.
 </p>
 
 <p align="center">
-Made By ZFordDev
+  Made by <strong>ZFordDev</strong>
 </p>
 
 ---
 
-## Overview  
-
-NestKey is a **proof‑of‑concept** for a simple, offline password manager.  
-It focuses on privacy, minimalism, and local‑only storage — no cloud, no sync, no telemetry.
-
-- **PIN‑locked** entry screen  
-- **Credential vault** (add / edit / delete / reveal passwords)  
-- **Password generator** (custom length & character sets)  
-- **Dark / Light mode** toggle (saved preference)  
-- **Vault wipe** (permanent delete of all credentials)  
-- **Fully offline** — no internet traffic  
-
-_**Note:** This is not a toy. There are no recovery measures, and forgetting your PIN will result in permanent data loss._
+> **A Note from ZFordDev**  
+NestKey development is taking a short break over the Christmas and New Year period.  
+Thank you to everyone who has supported the project, tested early builds, and shared feedback - it genuinely means a lot.  
+I’m looking forward to diving back in after the holidays and finishing the final polish for NestKey’s official Beta release in the new year.  
+See you in 2026.
 
 ---
 
-## Why I built this
+## **Overview**
 
-NestKey was built to explore secure local storage, encryption workflows, and Electron app packaging. It serves as a practical demonstration of my ability to design, build, and document a complete desktop application.
+NestKey is a lightweight, offline password manager designed as a practical exploration of:
+
+- Secure local storage  
+- Encryption workflows  
+- Electron app packaging  
+- Minimalist UX for sensitive data  
+
+Everything is stored locally and encrypted. There is **no recovery**, no online services, and no hidden data flow.
 
 ---
 
-## Getting Started  
+## **Features**
+
+### **PIN Lock**
+- Create a PIN on first launch  
+- PIN derives the encryption key  
+- Required to unlock the vault  
+
+### **Credential Vault**
+- Add, edit, delete, and view entries  
+- Fields: site, username, password, notes  
+- Passwords hidden by default (toggle reveal)  
+
+### **Password Generator**
+- Custom length (4–64 chars)  
+- Lowercase / uppercase / numbers / symbols  
+
+### **Dark & Light Themes**
+- Toggle anytime  
+- Preference saved automatically  
+
+### **Vault Wipe**
+- Permanently deletes all encrypted data  
+- No recovery — intentional by design  
+
+### **Fully Offline**
+- No network requests  
+- No analytics  
+- No cloud storage  
+
+---
+
+## **Getting Started**
 
 ```bash
 # Build installers
 npm run build
-# installers will appear in dist/
 
-# Run the app in development
+# Run in development
 npm start
 
-# Also builds installers
+# Alternative build
 npx electron-builder
-# Note: the PIN you set during testing will be baked into the built app.
 ```
 
-On first launch you’ll be asked to **create a PIN**.  
-This PIN derives the encryption key that protects your vault.
+> **Note:** During development, the PIN you set is baked into the built app.  
+> Always reset before distributing.
+
+On first launch, you’ll be prompted to **create a PIN**.  
+This PIN is used to derive the encryption key that protects your vault.
 
 ---
 
-## Screenshots
+## **Screenshot**
 
-<div align="center">
-    <img src="assets/Screenshot_01.png" alt="Login screen" width="700" />
-    <br/>
-    <em>Live preview — Light theme</em>
-</div>
-
----
-
-## 🛠 Features  
-
-### PIN Lock  
-- Requires a user‑chosen PIN to unlock the vault.  
-- If no PIN is set, the app prompts you to create one.  
-
-### Credential Vault  
-- Add, edit, delete, and view credentials (site, username, password, notes).  
-- Passwords hidden by default, revealable with “Show Password.”  
-
-### Password Generator  
-- Generate strong passwords with customizable options:  
-  - Length (4–64 characters)  
-  - Include lowercase, uppercase, numbers, symbols  
-
-### Dark / Light Mode  
-- Toggle between dark and light themes.  
-- Preference saved and applied on next launch.  
-
-### Vault Wipe  
-- Permanently delete all stored credentials.  
-- Irreversible action.  
-
-### Fully Offline  
-- All data stored locally on your device.  
-- No internet connection required, no external data sent.  
+<p align="center">
+  <img src="assets/Screenshot_01.png" width="700" />
+  <br/>
+  <em>Login screen — Light theme</em>
+</p>
 
 ---
 
-## Project Structure  
+## **Security**
+
+- **Key derivation:** PBKDF2‑SHA256 (200,000 iterations)  
+- **Salt:** 16‑byte random  
+- **Encryption:** AES‑256‑GCM (random IV + auth tag)  
+- **Storage:** Encrypted JSON (`vault.enc`) in `app.getPath('userData')`
+
+> ⚠️ **Warning**  
+> The derived encryption key remains in memory for the lifetime of the app.  
+> Not recommended for high‑value or enterprise‑grade secrets without further hardening.
+
+---
+
+## **Project Structure**
 
 ```
 NestKey/
-├── app/                  # Renderer (UI) code
-│   ├── index.html        # Main HTML file
-│   ├── renderer.js       # Frontend logic
-│   └── styles.css        # App styling
+├── app/                  # Renderer (UI)
+│   ├── index.html
+│   ├── renderer.js
+│   └── styles.css
 ├── assets/               # Icons / images
 ├── docs/                 # Documentation
-├── .gitignore            # Files to ignore in Git
-├── LICENSE               # License file
 ├── main.js               # Electron main process
-├── preload.js            # Secure bridge (context‑bridge)
-├── package.json          # App metadata and dependencies
-├── README.md             # This file
-└── version.json          # App versioning
+├── preload.js            # Secure context bridge
+├── package.json
+├── version.json
+└── README.md
 
-# Auto-generated at runtime (never commit):
-# pin.json — stores salt & hashed key
-# vault.enc — encrypted vault data
+# Generated at runtime (do not commit):
+# pin.json   — salt + hashed key
+# vault.enc  — encrypted vault data
 ```
 
 ---
 
-## Security  
+## **Known Issues**
 
-- **PIN → key**: PBKDF2‑SHA256 (200 000 iterations) with 16‑byte random salt.  
-- **Vault encryption**: AES‑256‑GCM (random IV + auth tag).  
-- **Storage**: Encrypted JSON (`vault.enc`) stored in `app.getPath('userData')`.  
-
-> ⚠️ **Warning**  
-> The current implementation keeps the derived encryption key in memory for the lifetime of the app.  
-> Do not use this for high‑value credentials without further hardening.
+- Delete Entry requires unique `id` per credential  
+- Vault wipe is irreversible  
+- Beta‑level security — not for high‑value secrets  
 
 ---
 
-## 🐞 Known Issues  
+## **Roadmap**
 
-- Delete Entry requires unique `id` per credential.  
-- Vault Wipe is irreversible — use with caution.  
-- Beta status: not recommended for sensitive or high‑value credentials.  
-
----
-
-## 🗺 Roadmap  
-
-**Completed:**  
-- PIN lock + vault encryption  
-- Credential vault CRUD  
+### **Completed**
+- PIN lock + encryption  
+- Credential CRUD  
 - Password generator  
-- Dark / Light mode toggle  
+- Theme toggle  
 - Vault wipe  
 
-**Planned:**  
-- UI polish & accessibility improvements  
-- Export / import vault options  
+### **Planned**
+- UI polish + accessibility  
+- Import / export vault  
 - Multi‑vault support  
-- Documentation expansion  
+- Expanded documentation  
 
 ---
 
-## License  
+## **License**
 
-MIT License — free to use, modify, and distribute. Please keep this notice.
-
----
-
-## Stay Connected  
-
-- [**Join me on Discord**](https://discord.gg/4RGzagyt7C)  
-- [**Find this project on GitHub**](https://github.com/ZFordDev/NestKey)  
-- [**Connect on Facebook**](https://www.facebook.com/zachary.ford.944654)  
+MIT License — free to use, modify, and distribute.
 
 ---
+## Explore More
 
-## ❤️ Support  
-
-NestKey is free and open source. If it helps you, consider supporting the creator via ZetoLabs:  
-- [**Ko‑Fi**](https://ko-fi.com/zetolabs)
-
----
+See what else I'm building at:  
+https://zford.dev
