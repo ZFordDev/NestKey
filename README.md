@@ -1,8 +1,5 @@
-
-# **NestKey**  
-
 <p align="center">
-  <img src="assets/icon.png" width="140" style="border-radius:12px;" />
+  <img src="assets/icon.png" width="125" style="border-radius:12px;" />
 </p>
 
 <p align="center">
@@ -16,24 +13,26 @@
 
 ---
 
-> **A Note from ZFordDev**  
-NestKey development is taking a short break over the Christmas and New Year period.  
-Thank you to everyone who has supported the project, tested early builds, and shared feedback - it genuinely means a lot.  
-I’m looking forward to diving back in after the holidays and finishing the final polish for NestKey’s official Beta release in the new year.  
-See you in 2026.
+## **A Note from ZFordDev**
+
+NestKey saw steady progress over the holiday break, and the core direction for the project is now well‑defined. Development is continuing, but my main focus at the moment is preparing for the upcoming launch of StaxDash.
+
+NestKey isn’t on pause — it’s simply moving at a slower, spare‑time pace while other projects take priority. Once StaxDash is out the door, I’ll be returning to NestKey to continue shaping it into a clean, reliable local‑only vault.
+
+Thanks to everyone who’s been following along and testing early builds. Your support genuinely helps guide the project.
 
 ---
 
 ## **Overview**
 
-NestKey is a lightweight, offline password manager designed as a practical exploration of:
+NestKey is a lightweight, offline password manager built as a practical exploration of:
 
 - Secure local storage  
 - Encryption workflows  
 - Electron app packaging  
 - Minimalist UX for sensitive data  
 
-Everything is stored locally and encrypted. There is **no recovery**, no online services, and no hidden data flow.
+All data is stored locally and encrypted. There is **no recovery**, no online services, and no hidden data flow — by design.
 
 ---
 
@@ -92,7 +91,7 @@ This PIN is used to derive the encryption key that protects your vault.
 ## **Screenshot**
 
 <p align="center">
-  <img src="assets/Screenshot_01.png" width="700" />
+  <img src="assets/Screenshot_01.png" width="500" />
   <br/>
   <em>Login screen — Light theme</em>
 </p>
@@ -138,7 +137,7 @@ NestKey/
 ## **Known Issues**
 
 - Delete Entry requires unique `id` per credential  
-- Vault wipe is irreversible  
+- Vault wipe is irreversible — intentional by design  
 - Beta‑level security — not for high‑value secrets  
 
 ---
@@ -157,6 +156,7 @@ NestKey/
 - Import / export vault  
 - Multi‑vault support  
 - Expanded documentation  
+- **Rebuild in .NET** — both to tighten the attack surface and to give me an excuse to learn .NET properly  
 
 ---
 
@@ -165,7 +165,11 @@ NestKey/
 MIT License — free to use, modify, and distribute.
 
 ---
-## Explore More
+
+## **Explore More**
 
 See what else I'm building at:  
 https://zford.dev
+
+---
+
