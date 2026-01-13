@@ -13,163 +13,72 @@
 
 ---
 
-## **A Note from ZFordDev**
+# 🚧 NestKey Is Being Rebuilt in .NET (Avalonia)
 
-NestKey saw steady progress over the holiday break, and the core direction for the project is now well‑defined. Development is continuing, but my main focus at the moment is preparing for the upcoming launch of StaxDash.
+NestKey began as an Electron prototype — a way to explore encryption workflows, local‑only storage, and a clean, minimal UX for sensitive data.  
+That prototype served its purpose, but it also revealed the limits of Electron for a security‑focused desktop vault.
 
-NestKey isn’t on pause — it’s simply moving at a slower, spare‑time pace while other projects take priority. Once StaxDash is out the door, I’ll be returning to NestKey to continue shaping it into a clean, reliable local‑only vault.
+To move NestKey forward in a way that reflects my standards for security, performance, and long‑term maintainability, the project is now being **rebuilt from the ground up in .NET + Avalonia**.
 
-Thanks to everyone who’s been following along and testing early builds. Your support genuinely helps guide the project.
+### Why the switch?
 
----
+- **Stronger security posture**  
+  A native .NET codebase offers a tighter attack surface than a JavaScript runtime.
 
-## **Overview**
+- **Better performance and memory behavior**  
+  Ideal for encryption, vault operations, and long‑running sessions.
 
-NestKey is a lightweight, offline password manager built as a practical exploration of:
+- **True cross‑platform desktop support**  
+  Avalonia provides a consistent UI layer across Windows, macOS, and Linux.
 
-- Secure local storage  
-- Encryption workflows  
-- Electron app packaging  
-- Minimalist UX for sensitive data  
+- **Cleaner architecture for long‑term growth**  
+  Multi‑vault support, import/export, and advanced features become far easier to implement.
 
-All data is stored locally and encrypted. There is **no recovery**, no online services, and no hidden data flow — by design.
-
----
-
-## **Features**
-
-### **PIN Lock**
-- Create a PIN on first launch  
-- PIN derives the encryption key  
-- Required to unlock the vault  
-
-### **Credential Vault**
-- Add, edit, delete, and view entries  
-- Fields: site, username, password, notes  
-- Passwords hidden by default (toggle reveal)  
-
-### **Password Generator**
-- Custom length (4–64 chars)  
-- Lowercase / uppercase / numbers / symbols  
-
-### **Dark & Light Themes**
-- Toggle anytime  
-- Preference saved automatically  
-
-### **Vault Wipe**
-- Permanently deletes all encrypted data  
-- No recovery — intentional by design  
-
-### **Fully Offline**
-- No network requests  
-- No analytics  
-- No cloud storage  
+The Electron version is now archived and no longer maintained.
 
 ---
 
-## **Getting Started**
+# 🗂️ What’s Coming in the .NET Edition
 
-```bash
-# Build installers
-npm run build
-
-# Run in development
-npm start
-
-# Alternative build
-npx electron-builder
-```
-
-> **Note:** During development, the PIN you set is baked into the built app.  
-> Always reset before distributing.
-
-On first launch, you’ll be prompted to **create a PIN**.  
-This PIN is used to derive the encryption key that protects your vault.
-
----
-
-## **Screenshot**
-
-<p align="center">
-  <img src="assets/Screenshot_01.png" width="500" />
-  <br/>
-  <em>Login screen — Light theme</em>
-</p>
-
----
-
-## **Security**
-
-- **Key derivation:** PBKDF2‑SHA256 (200,000 iterations)  
-- **Salt:** 16‑byte random  
-- **Encryption:** AES‑256‑GCM (random IV + auth tag)  
-- **Storage:** Encrypted JSON (`vault.enc`) in `app.getPath('userData')`
-
-> ⚠️ **Warning**  
-> The derived encryption key remains in memory for the lifetime of the app.  
-> Not recommended for high‑value or enterprise‑grade secrets without further hardening.
-
----
-
-## **Project Structure**
-
-```
-NestKey/
-├── app/                  # Renderer (UI)
-│   ├── index.html
-│   ├── renderer.js
-│   └── styles.css
-├── assets/               # Icons / images
-├── docs/                 # Documentation
-├── main.js               # Electron main process
-├── preload.js            # Secure context bridge
-├── package.json
-├── version.json
-└── README.md
-
-# Generated at runtime (do not commit):
-# pin.json   — salt + hashed key
-# vault.enc  — encrypted vault data
-```
-
----
-
-## **Known Issues**
-
-- Delete Entry requires unique `id` per credential  
-- Vault wipe is irreversible — intentional by design  
-- Beta‑level security — not for high‑value secrets  
-
----
-
-## **Roadmap**
-
-### **Completed**
-- PIN lock + encryption  
-- Credential CRUD  
-- Password generator  
-- Theme toggle  
-- Vault wipe  
-
-### **Planned**
-- UI polish + accessibility  
-- Import / export vault  
+- Native, secure vault storage  
+- Stronger key‑derivation and encryption pipeline  
+- Cross‑platform UI (Windows, macOS, Linux)  
 - Multi‑vault support  
-- Expanded documentation  
-- **Rebuild in .NET** — both to tighten the attack surface and to give me an excuse to learn .NET properly  
+- Import/export  
+- Cleaner, more polished UX  
+- A codebase built for long‑term evolution
+
+Development will begin soon, following the launch of **StaxDash**.
 
 ---
 
-## **License**
+# 🕹️ About the Old Prototype
 
-MIT License — free to use, modify, and distribute.
+The original Electron build explored:
+
+- PIN‑derived encryption  
+- AES‑256‑GCM vault storage  
+- Local‑only data flow  
+- Minimalist UI patterns  
+- Basic credential CRUD  
+- Password generation  
+- Light/dark themes
+
+It was never intended as a production‑grade vault, and it is now retired.
+
+If you’re curious, the prototype code remains available in the repo history.
 
 ---
 
-## **Explore More**
+# 📜 License
+
+MIT License — free to use, modify, and build upon.
+
+---
+
+# 🌐 Explore More
 
 See what else I'm building at:  
 https://zford.dev
 
 ---
-
