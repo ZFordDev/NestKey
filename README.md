@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <strong>A minimalist, local‑only vault for passwords, usernames, and notes — secured with a user‑chosen PIN.</strong><br/>
+  <strong>A minimalist, local‑only vault for passwords, usernames, and notes — secured with a master password.</strong><br/>
   No cloud. No sync. No telemetry. Your data stays on your machine.
 </p>
 
@@ -13,42 +13,42 @@
 
 ---
 
-# 🚧 NestKey Is Being Rebuilt in .NET (Avalonia)
+# 🚧 NestKey Is Being Rebuilt in Rust + Tauri
 
 NestKey began as an Electron prototype — a way to explore encryption workflows, local‑only storage, and a clean, minimal UX for sensitive data.  
 That prototype served its purpose, but it also revealed the limits of Electron for a security‑focused desktop vault.
 
-To move NestKey forward in a way that reflects my standards for security, performance, and long‑term maintainability, the project is now being **rebuilt from the ground up in .NET + Avalonia**.
+To move NestKey forward in a way that reflects my standards for security, performance, and long‑term maintainability, the project is now being **rebuilt from the ground up using Rust + Tauri + Svelte**.
 
 ### Why the switch?
 
-- **Stronger security posture**  
-  A native .NET codebase offers a tighter attack surface than a JavaScript runtime.
+- **Security as a first‑class concern**  
+  Rust provides memory‑safe, high‑performance cryptography with a minimal attack surface.
 
-- **Better performance and memory behavior**  
-  Ideal for encryption, vault operations, and long‑running sessions.
+- **Lightweight, native‑feeling desktop app**  
+  Tauri produces tiny binaries, uses the system WebView, and avoids bundling a full browser engine.
 
-- **True cross‑platform desktop support**  
-  Avalonia provides a consistent UI layer across Windows, macOS, and Linux.
+- **Cross‑platform by design**  
+  Windows, macOS, and Linux builds are supported out of the box.
 
-- **Cleaner architecture for long‑term growth**  
-  Multi‑vault support, import/export, and advanced features become far easier to implement.
+- **A clean architecture for long‑term evolution**  
+  The Rust backend becomes the foundation for future tools, extensions, and the broader ZetoLabs ecosystem.
 
 The Electron version is now archived and no longer maintained.
 
 ---
 
-# 🗂️ What’s Coming in the .NET Edition
+# 🗂️ What’s Coming in the Rust Edition
 
-- Native, secure vault storage  
-- Stronger key‑derivation and encryption pipeline  
-- Cross‑platform UI (Windows, macOS, Linux)  
-- Multi‑vault support  
-- Import/export  
-- Cleaner, more polished UX  
-- A codebase built for long‑term evolution
+- Secure, encrypted vault storage  
+- Strong key‑derivation (Argon2id) and AES‑256‑GCM encryption  
+- Cross‑platform desktop UI (Windows, macOS, Linux)  
+- Clean Svelte interface  
+- Multi‑vault support (future)  
+- Import/export (future)  
+- A codebase built for long‑term growth and ecosystem integration
 
-Development will begin soon, following the launch of **StaxDash**.
+Development is active and ongoing.
 
 ---
 
@@ -62,11 +62,20 @@ The original Electron build explored:
 - Minimalist UI patterns  
 - Basic credential CRUD  
 - Password generation  
-- Light/dark themes
+- Light/dark themes  
 
-It was never intended as a production‑grade vault, and it is now retired.
+It was never intended as a production‑grade vault, and it is now retired.  
+If you're curious, the prototype code remains available in the repo history.
 
-If you’re curious, the prototype code remains available in the repo history.
+---
+
+# 📦 Tech Stack (Current)
+
+- **Rust** — secure backend, crypto, vault logic  
+- **Tauri** — native desktop shell  
+- **Svelte + Vite** — fast, modern UI  
+- **AES‑256‑GCM** — authenticated encryption  
+- **Argon2id** — memory‑hard key derivation  
 
 ---
 
