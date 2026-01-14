@@ -1,0 +1,63 @@
+
+# Rust / Cargo
+
+/target
+**/*.rs.bk
+
+# Tauri build output
+/src-tauri/target
+/src-tauri/gen
+
+# Node / Vite / Frontend
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Vite cache
+.vite
+vite.config.ts.timestamp*
+
+
+# Logs
+
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+
+# OS / Editor Junk
+
+.DS_Store
+Thumbs.db
+
+# VS Code
+.vscode/*
+!.vscode/extensions.json
+
+# JetBrains / IntelliJ
+.idea
+
+# Windows-specific
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Tauri Bundler Output
+
+/src-tauri/target
+/src-tauri/bundled
+/src-tauri/icons/*.ico
+/src-tauri/icons/*.png
+
+# Environment / Secrets
+
+.env
+.env.*
