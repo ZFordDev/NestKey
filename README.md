@@ -38,17 +38,43 @@ The Electron version is now archived and no longer maintained.
 
 ---
 
-# 🗂️ What’s Coming in the Rust Edition
+# 🔐 Current Progress (Rust Edition)
 
-- Secure, encrypted vault storage  
-- Strong key‑derivation (Argon2id) and AES‑256‑GCM encryption  
-- Cross‑platform desktop UI (Windows, macOS, Linux)  
-- Clean Svelte interface  
-- Multi‑vault support (future)  
-- Import/export (future)  
-- A codebase built for long‑term growth and ecosystem integration
+The Rust rebuild is now well underway, with the core security layer fully implemented and tested. This phase establishes NestKey’s foundation as a serious, local‑only vault with real cryptographic guarantees.
 
-Development is active and ongoing.
+### ✅ Completed (Phase 2 — Core Security Layer)
+
+- **Argon2id key derivation**  
+  Deterministic, memory‑hard, and zeroized after use.
+
+- **AES‑256‑GCM encryption/decryption**  
+  Authenticated encryption with integrity protection via GCM tags.
+
+- **Secure random salt + nonce generation**  
+  Using vetted RNGs from the crypto stack.
+
+- **Versioned vault format**  
+  Clean separation between plaintext vault and encrypted representation.
+
+- **Full Rust crypto module**  
+  `kdf`, `aesgcm`, `types`, `errors`, and `vault` modules implemented.
+
+- **Unit‑tested end‑to‑end**  
+  Round‑trip encryption, wrong‑key failure, salt variance, and vault serialization.
+
+This completes the credibility layer — the part that transforms NestKey from a prototype into a real security product.
+
+---
+
+# 🛠️ Up Next (Phase 3 — App Integration)
+
+- Tauri IPC commands for unlocking and saving the vault  
+- Persistent encrypted vault storage on disk  
+- Svelte lock screen + unlock flow  
+- Vault UI (entries, editor, list view)  
+- Auto‑save and versioning groundwork
+
+Development continues with a focus on stability, clarity, and long‑term maintainability.
 
 ---
 
